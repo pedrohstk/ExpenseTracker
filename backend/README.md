@@ -6,15 +6,15 @@ O backend está em fase inicial de desenvolvimento e utiliza um banco H2 persist
 
 ## Tecnologias
 
-| Tecnologia | Finalidade |
-|------------|------------|
-| Java 21 | Linguagem e runtime |
-| Spring Boot 4.1 | Framework da aplicação |
-| Spring Web MVC | Desenvolvimento da API HTTP |
-| Spring Data JPA | Persistência de dados |
-| Hibernate | Implementação ORM |
-| H2 Database | Banco local de desenvolvimento |
-| Maven Wrapper | Build de gerenciamento de dependências |
+| Tecnologia | Finalidade                            |
+|------------|---------------------------------------|
+| Java 21 | Linguagem e runtime                   |
+| Spring Boot 4.1 | Framework da aplicação                |
+| Spring Web MVC | Desenvolvimento da API HTTP           |
+| Spring Data JPA | Persistência de dados                 |
+| Hibernate | Implementação ORM                     |
+| H2 Database | Banco local de desenvolvimento        |
+| Maven Wrapper | Build e gerenciamento de dependências |
 
 ## Pré-requisitos
 
@@ -23,7 +23,7 @@ Antes de executar o backend, verifique:
 ```bash
 java -version
 ```
-O ambiente deve utilizar java 21 ou superior.
+O ambiente deve utilizar Java 21 ou superior.
 
 Não é necessário instalar o Maven globalmente, pois o projeto já inclui o Maven Wrapper.
 
@@ -34,6 +34,7 @@ A aplicação recebe sua configuração de banco por variáveis de ambiente:
 
 | Variável            | Obrigatória | Exemplo local               | Descrição            |
 |---------------------|------------|-----------------------------|----------------------|
+| `SPRING_PROFILESS_ACTIVE` | Sim | `local` | Ativa a configuração de desenvolvimento local | 
 | `DATABASE_URL`      |         Sim | `jdbc:h2:file:./data/appdb` | URL JDBC do banco    |
 | `DATABASE_USERNAME` |         Sim | `dbadmin`                   | Usuário do H2        |
 | `DATABASE_PASSWORD` |         Não | vazio                       | Senha do banco local |
@@ -56,6 +57,7 @@ Crie uma configuração do tipo **Application**:
 Adicione as variáveis:
 
 ```text
+SPRING_PROFILES_ACTIVE=local
 DATABASE_URL=jdbc:h2:file:./data/appdb
 DATABASE_USERNAME=dbadmin
 DATABASE_PASSWORD=
@@ -67,7 +69,7 @@ Execute a configuração e aguarde:
 Started ExpenseTrackerApplication
 ```
 
-A aplicaçào ficará disponível em:
+A aplicação ficará disponível em:
 
 ```text
 http://localhost:8080
@@ -77,7 +79,7 @@ Um `404` na rota raiz é esperado enquanto a API não possuir controllers.
 
 ## Execução pelo terminal
 
-Acesso o diretório:
+Acesse o diretório:
 
 ```bash
 cd backend
@@ -86,6 +88,7 @@ cd backend
 Configure o ambiente:
 
 ```bash
+export SPRING_PROFILES_ACTIVE="local"
 export DATABASE_URL="jdbc:h2:file:./data/appdb"
 export DATABASE_USERNAME="dbadmin"
 export DATABASE_PASSWORD=""
@@ -99,7 +102,7 @@ Inicie a aplicação:
 
 ## Console do H2
 
-Com a aplicaçào em execução, acesse:
+Com a aplicação em execução, acesse:
 
 ```text
 http://localhost:8080/h2-console
@@ -114,12 +117,12 @@ Utilize:
 | User Name | `dbadmin`                   |
 | Password | vazio                       |
 
-A URL informado no console deve ser idêntica ao valor de `DATABASE_URL`.
+A URL informada no console deve ser idêntica ao valor de `DATABASE_URL`.
 
 Para validar conexão:
 
 ```sql
-SELECT 1 AS HEALTH_CHECK
+SELECT 1 AS HEALTH_CHECK;
 ```
 
 O resultado esperado é:
@@ -136,7 +139,7 @@ O banco local é armazenado em:
 backend/data/appdb.mv.db
 ```
 
-Esse arquivo é específico da cada ambiente de desenvolvimneto e não deve ser versionado.
+Esse arquivo é específico da cada ambiente de desenvolvimento e não deve ser versionado.
 
 Para recriar o banco local, pare a aplicação e remova manualmente os arquivos existentes em `backend/data/`.
 
