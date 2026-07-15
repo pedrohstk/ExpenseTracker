@@ -1,0 +1,21 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Java / Maven
+backend/target/
+*.class
+*.log
+
+# Environment variables
+.env
+.env.local
+
+# H2 Database
+*.db
+*.mv.db
+*.trace.db
+
+# Operating system
+.DS_Store
+Thumbs.db
