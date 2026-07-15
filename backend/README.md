@@ -34,7 +34,7 @@ A aplicação recebe sua configuração de banco por variáveis de ambiente:
 
 | Variável            | Obrigatória | Exemplo local               | Descrição            |
 |---------------------|------------|-----------------------------|----------------------|
-| `SPRING_PROFILESS_ACTIVE` | Sim | `local` | Ativa a configuração de desenvolvimento local | 
+| `SPRING_PROFILES_ACTIVE` | Sim | `local` | Ativa a configuração de desenvolvimento local | 
 | `DATABASE_URL`      |         Sim | `jdbc:h2:file:./data/appdb` | URL JDBC do banco    |
 | `DATABASE_USERNAME` |         Sim | `dbadmin`                   | Usuário do H2        |
 | `DATABASE_PASSWORD` |         Não | vazio                       | Senha do banco local |
@@ -139,7 +139,7 @@ O banco local é armazenado em:
 backend/data/appdb.mv.db
 ```
 
-Esse arquivo é específico da cada ambiente de desenvolvimento e não deve ser versionado.
+Esse arquivo é específico de cada ambiente de desenvolvimento e não deve ser versionado.
 
 Para recriar o banco local, pare a aplicação e remova manualmente os arquivos existentes em `backend/data/`.
 
